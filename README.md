@@ -1,16 +1,63 @@
-# stretching
+# 🧠 NeckStretch — 얼굴 인식 기반 목 스트레칭 헬스 앱
 
-A new Flutter project.
+> **"AI가 내 목 상태를 인식하고 점수로 피드백해주는 스마트 스트레칭 앱"**
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🎯 프로젝트 소개
 
-A few resources to get you started if this is your first Flutter project:
+**NeckStretch**는 카메라를 통해 **얼굴 움직임(고개 돌림)** 을 실시간으로 인식하여  
+목 스트레칭을 도와주는 **AI 기반 웰니스 앱**입니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+제한된 시간 안에 얼마나 많이 스트레칭을 했는지를 **점수로 측정**하여  
+사용자가 재미있게 건강한 습관을 유지할 수 있도록 설계되었습니다.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> 🩵 “앉아서 하루 종일 컴퓨터를 보는 사람들의 목 건강을 지켜줍니다.”
+
+---
+
+## 🧩 핵심 기능
+
+| 기능 | 설명 |
+|------|------|
+| 🧍‍♂️ **얼굴 인식 (Face Detection)** | Google ML Kit을 활용해 사용자의 얼굴을 인식하고 고개 회전 각도(Yaw, Roll)를 실시간으로 분석 |
+| 🕹 **스트레칭 감지 및 점수 시스템** | 왼쪽/오른쪽으로 고개를 돌릴 때마다 점수가 +10점씩 상승 |
+| ⏱ **타이머 기반 게임 모드** | 10초 동안 최대한 많은 스트레칭을 수행하여 점수를 기록 |
+| 🧾 **기록 저장 & 히스토리 확인** | 점수가 자동 저장되어 이전 기록과 비교 가능 |
+| 📱 **직관적인 UI** | 실시간 카메라 오버레이로 점수, 남은 시간, 얼굴 각도를 한눈에 확인 |
+
+---
+
+## 🧠 작동 원리
+
+1. 앱이 전면 카메라를 활성화합니다.
+2. ML Kit Face Detection이 사용자의 얼굴 방향(`headEulerAngleY`, `headEulerAngleZ`)을 분석합니다.
+3. 사용자가 고개를 왼쪽/오른쪽으로 돌릴 때 각도가 ±30°를 넘으면 **스트레칭 1회로 인식**합니다.
+4. 제한 시간(10초)이 끝나면 자동으로 카운트다운 종료 및 점수 표시창이 나타납니다.
+
+---
+
+## 🛠 기술 스택
+
+| 분류 | 사용 기술 |
+|------|------------|
+| **Framework** | Flutter (Dart) |
+| **AI/ML** | Google ML Kit – Face Detection |
+| **Camera** | flutter/camera 패키지 |
+| **Permission** | permission_handler |
+| **Storage** | SharedPreferences (Score 기록 저장) |
+| **UI** | Material + Cupertino 혼합 인터페이스 |
+| **플랫폼** | iOS / Android |
+
+---
+
+## 📸 화면 구성
+
+| 화면 | 설명 |
+|------|------|
+| 🏁 **시작 화면** | 카메라 권한 요청 후 스트레칭 세션 시작 |
+| 📷 **스트레칭 화면** | 얼굴 인식 + 점수 표시 + 남은 시간 카운트다운 |
+| 🧾 **결과 알림창** | 세션 종료 후 최종 점수 안내 (기록 보기 버튼 포함) | (미구현)
+| 📊 **기록 보기 화면** | 이전 세션들의 점수 기록 확인 가능 | (미구현)
+
+---
